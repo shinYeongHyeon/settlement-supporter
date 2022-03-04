@@ -4,44 +4,45 @@ import core "github.com/shinYeongHyeon/settlement-supporter/src/core/uuid"
 
 // User domain type
 type User struct {
-	uuid     string
-	id       Id
-	password Password
-	nickName NickName
+	Uuid     string
+	Id       Id
+	Password Password
+	NickName NickName
 }
 
 // NewUserProps domain type for new one
 type NewUserProps struct {
-	id       Id
-	password Password
-	nickName NickName
+	Id       Id
+	Password Password
+	NickName NickName
 }
 
 // NewUserCreate create new user
 func NewUserCreate(props NewUserProps) (User, error) {
 	return User{
-		uuid:     core.CreateUuid(),
-		id:       props.id,
-		password: props.password,
-		nickName: props.nickName,
+		Uuid:     core.CreateUuid(),
+		Id:       props.Id,
+		Password: props.Password,
+		NickName: props.NickName,
 	}, nil
 }
 
-func (user User) Uuid() string {
-	return user.uuid
+// GetUuid get uuid
+func (user User) GetUuid() string {
+	return user.Uuid
 }
 
-// Id get id
-func (user User) Id() Id {
-	return user.id
+// GetId get id
+func (user User) GetId() Id {
+	return user.Id
 }
 
-// Password get password
-func (user User) Password() Password {
-	return user.password
+// GetPassword get password
+func (user User) GetPassword() Password {
+	return user.Password
 }
 
-// NickName get nickName
-func (user User) NickName() NickName {
-	return user.nickName
+// GetNickName get nickName
+func (user User) GetNickName() NickName {
+	return user.NickName
 }

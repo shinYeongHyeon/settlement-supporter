@@ -16,6 +16,6 @@ func TestNewUserCreate(t *testing.T) {
 	user, err := NewUserCreate(userProps)
 
 	if err != nil || user.Uuid() == "" || user.Id().Value() != idString || user.NickName().Value() != nickNameString || user.Password().Value() != passwordString {
-		t.Fatal("Fail to Create User")
+		t.Fatal("Fail to Create UserEmail")
 	}
 }
