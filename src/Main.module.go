@@ -3,10 +3,15 @@ package mainModule
 import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
+	core "github.com/shinYeongHyeon/settlement-supporter/src/core/postgres"
+	user "github.com/shinYeongHyeon/settlement-supporter/src/user/entity"
+	"log"
 )
 
 // CreateModule is returned fiber.App for mounting
 func CreateModule() *fiber.App {
+	migratePostgres()
+
 	mainModule := fiber.New()
 
 	// TODO: Error to 404
@@ -16,4 +21,13 @@ func CreateModule() *fiber.App {
 	})
 
 	return mainModule
+}
+
+func migratePostgres() {
+	gorm := core.PostgresConnect()
+	err := gorm.Table("users").AutoMigrate(&user.Entity{})
+
+	if err != nil {
+		log.Fatal(err)
+	}
 }
