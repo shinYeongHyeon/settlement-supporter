@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  api:
+    container_name: settlement-supporter-api
+    build:
+      context: ""
+      dockerfile: Dockerfile
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./:/app/
+    environment:
+      - POSTGRES_DB=settlementsupporter
+      - POSTGRES_USER=settlementsupportermaster
+      - POSTGRES_PASSWORD=settlementpwd
+      - POSTGRES_HOST=settlement-postgres
+      - POSTGRES_PORT=5435

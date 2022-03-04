@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: settlement-postgres
+    image: postgres
+    volumes:
+      - ./docker/data/postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=settlementsupporter
+      - POSTGRES_USER=settlementsupportermaster
+      - POSTGRES_PASSWORD=settlementpwd
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+    ports:
+      - "5435:5432"
