@@ -1,9 +1,8 @@
-package user
+package userRepository
 
 import (
-	"fmt"
-	user "github.com/shinYeongHyeon/settlement-supporter/src/user/domain"
-	user2 "github.com/shinYeongHyeon/settlement-supporter/src/user/entity"
+	userDomain "github.com/shinYeongHyeon/settlement-supporter/src/user/domain"
+	userEntity "github.com/shinYeongHyeon/settlement-supporter/src/user/entity"
 	"gorm.io/gorm"
 )
 
@@ -13,11 +12,8 @@ func Init(db *gorm.DB) {
 	userDb = db
 }
 
-func Create(user user.User) {
-	fmt.Println("user")
-	fmt.Println(user)
-
-	userDb.Create(&user2.Entity{
+func Create(user userDomain.User) {
+	userDb.Create(&userEntity.User{
 		UUID:     user.GetUuid(),
 		Id:       user.GetId().Value(),
 		Password: user.GetPassword().Value(),

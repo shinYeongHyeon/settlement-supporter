@@ -1,9 +1,9 @@
-package user
+package userEntity
 
 import "time"
 
-// Entity is UserEntity
-type Entity struct {
+// User is UserEntity
+type User struct {
 	UUID      string `gorm:"primaryKey"`
 	Id        string
 	Password  string

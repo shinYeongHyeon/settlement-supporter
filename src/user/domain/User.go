@@ -1,4 +1,4 @@
-package user
+package userDomain
 
 import core "github.com/shinYeongHyeon/settlement-supporter/src/core/uuid"
 

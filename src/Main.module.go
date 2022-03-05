@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
 	core "github.com/shinYeongHyeon/settlement-supporter/src/core/postgres"
-	user3 "github.com/shinYeongHyeon/settlement-supporter/src/user/domain"
-	user "github.com/shinYeongHyeon/settlement-supporter/src/user/entity"
-	user2 "github.com/shinYeongHyeon/settlement-supporter/src/user/repository"
+	userEntity "github.com/shinYeongHyeon/settlement-supporter/src/user/entity"
 	"log"
 )
 
@@ -28,20 +26,7 @@ func CreateModule() *fiber.App {
 func migratePostgres() {
 	gorm := core.PostgresConnect()
 
-	err := gorm.Table("users").AutoMigrate(&user.Entity{})
-
-	userId, _ := user3.IdCreate("a")
-	userPassword, _ := user3.PasswordCreate("a")
-	userNickName, _ := user3.NickNameCreate("a")
-	userProps := user3.NewUserProps{
-		Id:       userId,
-		Password: userPassword,
-		NickName: userNickName,
-	}
-	user, _ := user3.NewUserCreate(userProps)
-
-	user2.Init(gorm.Table("users"))
-	user2.Create(user)
+	err := gorm.Table("users").AutoMigrate(&userEntity.User{})
 
 	if err != nil {
 		log.Fatal(err)

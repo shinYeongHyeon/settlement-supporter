@@ -1,4 +1,4 @@
-package core
+package coreUuid
 
 import "github.com/google/uuid"
 

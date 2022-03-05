@@ -1,4 +1,4 @@
-package user
+package userDomain
 
 import "testing"
 
@@ -9,13 +9,13 @@ func TestNewUserCreate(t *testing.T) {
 	nickNameString := "guest"
 
 	userProps := NewUserProps{
-		id:       Id{idString},
-		password: Password{passwordString},
-		nickName: NickName{nickNameString},
+		Id:       Id{idString},
+		Password: Password{passwordString},
+		NickName: NickName{nickNameString},
 	}
 	user, err := NewUserCreate(userProps)
 
-	if err != nil || user.Uuid() == "" || user.Id().Value() != idString || user.NickName().Value() != nickNameString || user.Password().Value() != passwordString {
+	if err != nil || user.GetUuid() == "" || user.GetId().Value() != idString || user.GetNickName().Value() != nickNameString || user.GetPassword().Value() != passwordString {
 		t.Fatal("Fail to Create UserEmail")
 	}
 }
