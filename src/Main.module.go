@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
 	core "github.com/shinYeongHyeon/settlement-supporter/src/core/postgres"
+	userModule "github.com/shinYeongHyeon/settlement-supporter/src/user"
 	userEntity "github.com/shinYeongHyeon/settlement-supporter/src/user/entity"
 	"log"
 )
@@ -13,6 +14,8 @@ func CreateModule() *fiber.App {
 	migratePostgres()
 
 	mainModule := fiber.New()
+
+	mainModule.Mount("/user", userModule.CreateModule())
 
 	// TODO: Error to 404
 	mainModule.Get("/*", func(c *fiber.Ctx) error {
