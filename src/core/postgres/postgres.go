@@ -9,14 +9,12 @@ import (
 )
 
 type PostgresManager struct {
-	db *gorm.DB
+	Db *gorm.DB
 }
 
 var Manager *PostgresManager
 
 func init() {
-	fmt.Println("Call Init Function")
-
 	var dsn = fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=5432 sslmode=disable TimeZone=Asia/Seoul",
 		os.Getenv("POSTGRES_HOST"),
@@ -29,7 +27,7 @@ func init() {
 		log.Fatal("Db Connect Error !")
 	}
 
-	Manager = &PostgresManager{db: db}
+	Manager = &PostgresManager{Db: db}
 }
 
 // GetManager : Get PostgresManager
