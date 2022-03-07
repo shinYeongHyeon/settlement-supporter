@@ -1,8 +1,8 @@
 package mainModule
 
 import (
-	"fmt"
 	"github.com/gofiber/fiber/v2"
+	coreError "github.com/shinYeongHyeon/settlement-supporter/src/core/error"
 	core "github.com/shinYeongHyeon/settlement-supporter/src/core/postgres"
 	userModule "github.com/shinYeongHyeon/settlement-supporter/src/user"
 	userEntity "github.com/shinYeongHyeon/settlement-supporter/src/user/entity"
@@ -17,11 +17,7 @@ func CreateModule() *fiber.App {
 
 	mainModule.Mount("/user", userModule.CreateModule())
 
-	// TODO: Error to 404
-	mainModule.Get("/*", func(c *fiber.Ctx) error {
-		msg := fmt.Sprintf("Hello ✋\nWe are Settlement Supporter API.\nRequest URL %s is not found.", c.Params("*"))
-		return c.SendString(msg)
-	})
+	mainModule.Get("/*", coreError.NotFoundError)
 
 	return mainModule
 }
