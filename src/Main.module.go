@@ -27,9 +27,9 @@ func CreateModule() *fiber.App {
 }
 
 func migratePostgres() {
-	gorm := core.GetManager()
+	manager := core.GetManager()
 
-	err := gorm.Table("users").AutoMigrate(&userEntity.User{})
+	err := manager.Db.Table("users").AutoMigrate(&userEntity.User{})
 
 	if err != nil {
 		log.Fatal(err)
