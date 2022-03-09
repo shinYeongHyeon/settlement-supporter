@@ -36,7 +36,14 @@
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "201": {
+                        "description": "CreateUserResponse",
+                        "schema": {
+                            "$ref": "#/definitions/userControllerDto.CreateResponse"
+                        }
+                    }
+                }
             }
         }
     },
@@ -51,6 +58,14 @@
                     "type": "string"
                 },
                 "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "userControllerDto.CreateResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
                     "type": "string"
                 }
             }

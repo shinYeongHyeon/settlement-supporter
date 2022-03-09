@@ -9,6 +9,11 @@ definitions:
       password:
         type: string
     type: object
+  userControllerDto.CreateResponse:
+    properties:
+      code:
+        type: string
+    type: object
 host: localhost:9999
 info:
   contact:
@@ -32,7 +37,11 @@ paths:
           $ref: '#/definitions/userControllerDto.CreateRequest'
       produces:
       - application/json
-      responses: {}
+      responses:
+        "201":
+          description: CreateUserResponse
+          schema:
+            $ref: '#/definitions/userControllerDto.CreateResponse'
       summary: Create an account
       tags:
       - User

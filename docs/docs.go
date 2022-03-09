@@ -43,7 +43,14 @@ const docTemplate = `{
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "201": {
+                        "description": "CreateUserResponse",
+                        "schema": {
+                            "$ref": "#/definitions/userControllerDto.CreateResponse"
+                        }
+                    }
+                }
             }
         }
     },
@@ -58,6 +65,14 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "userControllerDto.CreateResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
                     "type": "string"
                 }
             }

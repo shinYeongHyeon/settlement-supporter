@@ -8,10 +8,11 @@ import (
 // Create : Create user
 // @Summary      Create an account
 // @Description  Create an account
-// @Tags	     User
+// @Tags                User
 // @Accept       json
 // @Produce      json
-// @Param        user  body  userControllerDto.CreateRequest  true  "CreateUserRequest"
+// @Param        user  body      userControllerDto.CreateRequest   true  "CreateUserRequest"
+// @Success      201   {object}  userControllerDto.CreateResponse  tru   "CreateUserResponse"
 // @Router       /users [post]
 func Create(context *fiber.Ctx) error {
 	request := new(userControllerDto.CreateRequest)
@@ -20,5 +21,9 @@ func Create(context *fiber.Ctx) error {
 		return err
 	}
 
-	return context.Send(context.Body())
+	response := userControllerDto.CreateResponse{
+		Code: "SUCCESS",
+	}
+
+	return context.Status(fiber.StatusCreated).JSON(response)
 }
