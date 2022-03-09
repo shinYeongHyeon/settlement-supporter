@@ -1,0 +1,59 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "당신의 정산을 쉽게 해줄 API",
+        "title": "Settlement support API",
+        "contact": {
+            "name": "Den",
+            "email": "den.shin.dev@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:9999",
+    "basePath": "/",
+    "paths": {
+        "/users": {
+            "post": {
+                "description": "Create an account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create an account",
+                "parameters": [
+                    {
+                        "description": "CreateUserRequest",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/userControllerDto.CreateRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "userControllerDto.CreateRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

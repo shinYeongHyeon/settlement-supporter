@@ -5,7 +5,14 @@ import (
 	userControllerDto "github.com/shinYeongHyeon/settlement-supporter/src/user/controller/dto"
 )
 
-// Create : User Create Controller
+// Create : Create user
+// @Summary      Create an account
+// @Description  Create an account
+// @Tags	     User
+// @Accept       json
+// @Produce      json
+// @Param        user  body  userControllerDto.CreateRequest  true  "CreateUserRequest"
+// @Router       /users [post]
 func Create(context *fiber.Ctx) error {
 	request := new(userControllerDto.CreateRequest)
 

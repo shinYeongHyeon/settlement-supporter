@@ -15,7 +15,7 @@ func CreateModule() *fiber.App {
 
 	mainModule := fiber.New()
 
-	mainModule.Mount("/user", userModule.CreateModule())
+	mainModule.Mount("/users", userModule.CreateModule())
 
 	mainModule.Get("/*", coreError.NotFoundError)
 
