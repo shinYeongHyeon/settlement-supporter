@@ -3,7 +3,7 @@ package userModule
 import (
 	"github.com/gofiber/fiber/v2"
 	coreError "github.com/shinYeongHyeon/settlement-supporter/src/core/error"
-	userController "github.com/shinYeongHyeon/settlement-supporter/src/user/controller"
+	userController "github.com/shinYeongHyeon/settlement-supporter/src/user/controller/command"
 )
 
 // CreateModule : returned fiber.App for mounting userModule

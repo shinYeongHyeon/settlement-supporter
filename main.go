@@ -9,7 +9,7 @@ import (
 )
 
 // @title          Settlement support API
-// @version        1.0
+// @version        0.1
 // @description    당신의 정산을 쉽게 해줄 API
 // @contact.name   Den
 // @contact.email  den.shin.dev@gmail.com

@@ -1,6 +1,6 @@
 basePath: /
 definitions:
-  userControllerDto.CreateRequest:
+  userControllerCommandDto.CreateRequest:
     properties:
       id:
         type: string
@@ -9,9 +9,19 @@ definitions:
       password:
         type: string
     type: object
-  userControllerDto.CreateResponse:
+  userControllerCommandDto.CreateResponse:
+    description: SUCCESS 만이 성공
     properties:
       code:
+        example: SUCCESS
+        type: string
+    type: object
+  userControllerCommandDto.CreateResponseError:
+    description: Create 의 오류응답
+    properties:
+      code:
+        type: string
+      errorMessage:
         type: string
     type: object
 host: localhost:9999
@@ -21,7 +31,7 @@ info:
     name: Den
   description: 당신의 정산을 쉽게 해줄 API
   title: Settlement support API
-  version: "1.0"
+  version: "0.1"
 paths:
   /users:
     post:
@@ -34,14 +44,18 @@ paths:
         name: user
         required: true
         schema:
-          $ref: '#/definitions/userControllerDto.CreateRequest'
+          $ref: '#/definitions/userControllerCommandDto.CreateRequest'
       produces:
       - application/json
       responses:
         "201":
           description: CreateUserResponse
           schema:
-            $ref: '#/definitions/userControllerDto.CreateResponse'
+            $ref: '#/definitions/userControllerCommandDto.CreateResponse'
+        "400":
+          description: CreateUserErrorResponse
+          schema:
+            $ref: '#/definitions/userControllerCommandDto.CreateResponseError'
       summary: Create an account
       tags:
       - User

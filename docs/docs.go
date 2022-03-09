@@ -39,7 +39,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/userControllerDto.CreateRequest"
+                            "$ref": "#/definitions/userControllerCommandDto.CreateRequest"
                         }
                     }
                 ],
@@ -47,7 +47,13 @@ const docTemplate = `{
                     "201": {
                         "description": "CreateUserResponse",
                         "schema": {
-                            "$ref": "#/definitions/userControllerDto.CreateResponse"
+                            "$ref": "#/definitions/userControllerCommandDto.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "CreateUserErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/userControllerCommandDto.CreateResponseError"
                         }
                     }
                 }
@@ -55,7 +61,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "userControllerDto.CreateRequest": {
+        "userControllerCommandDto.CreateRequest": {
             "type": "object",
             "properties": {
                 "id": {
@@ -69,10 +75,24 @@ const docTemplate = `{
                 }
             }
         },
-        "userControllerDto.CreateResponse": {
+        "userControllerCommandDto.CreateResponse": {
+            "description": "SUCCESS 만이 성공",
             "type": "object",
             "properties": {
                 "code": {
+                    "type": "string",
+                    "example": "SUCCESS"
+                }
+            }
+        },
+        "userControllerCommandDto.CreateResponseError": {
+            "description": "Create 의 오류응답",
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "errorMessage": {
                     "type": "string"
                 }
             }
@@ -82,7 +102,7 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "1.0",
+	Version:          "0.1",
 	Host:             "localhost:9999",
 	BasePath:         "/",
 	Schemes:          []string{},

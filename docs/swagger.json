@@ -7,7 +7,7 @@
             "name": "Den",
             "email": "den.shin.dev@gmail.com"
         },
-        "version": "1.0"
+        "version": "0.1"
     },
     "host": "localhost:9999",
     "basePath": "/",
@@ -32,7 +32,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/userControllerDto.CreateRequest"
+                            "$ref": "#/definitions/userControllerCommandDto.CreateRequest"
                         }
                     }
                 ],
@@ -40,7 +40,13 @@
                     "201": {
                         "description": "CreateUserResponse",
                         "schema": {
-                            "$ref": "#/definitions/userControllerDto.CreateResponse"
+                            "$ref": "#/definitions/userControllerCommandDto.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "CreateUserErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/userControllerCommandDto.CreateResponseError"
                         }
                     }
                 }
@@ -48,7 +54,7 @@
         }
     },
     "definitions": {
-        "userControllerDto.CreateRequest": {
+        "userControllerCommandDto.CreateRequest": {
             "type": "object",
             "properties": {
                 "id": {
@@ -62,10 +68,24 @@
                 }
             }
         },
-        "userControllerDto.CreateResponse": {
+        "userControllerCommandDto.CreateResponse": {
+            "description": "SUCCESS 만이 성공",
             "type": "object",
             "properties": {
                 "code": {
+                    "type": "string",
+                    "example": "SUCCESS"
+                }
+            }
+        },
+        "userControllerCommandDto.CreateResponseError": {
+            "description": "Create 의 오류응답",
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "errorMessage": {
                     "type": "string"
                 }
             }
