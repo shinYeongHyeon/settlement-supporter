@@ -1,8 +1,11 @@
-package command
+package userControllerCommand
 
 import (
 	"github.com/gofiber/fiber/v2"
+	createUserUseCase "github.com/shinYeongHyeon/settlement-supporter/src/user/application/CreateUserUseCase"
+	createUserUseCaseDto "github.com/shinYeongHyeon/settlement-supporter/src/user/application/CreateUserUseCase/dto"
 	userControllerCommandDto "github.com/shinYeongHyeon/settlement-supporter/src/user/controller/command/dto"
+	userDomain "github.com/shinYeongHyeon/settlement-supporter/src/user/domain"
 )
 
 // Create : Create user
@@ -25,6 +28,24 @@ func Create(context *fiber.Ctx) error {
 	if request.Id == "" || request.NickName == "" || request.Password == "" {
 		return context.Status(fiber.StatusBadRequest).JSON(userControllerCommandDto.CreateResponseErrorForBadRequest)
 	}
+
+	id, idOrError := userDomain.IdCreate(request.Id)
+	nickName, nickNameOrError := userDomain.NickNameCreate(request.NickName)
+	password, passwordOrError := userDomain.PasswordCreate(request.Password)
+
+	// TODO: 에러 표준화
+	if idOrError != nil {
+	}
+	if nickNameOrError != nil {
+	}
+	if passwordOrError != nil {
+	}
+
+	createUserUseCase.Exec(createUserUseCaseDto.CreateUserUseCaseRequest{
+		Id:       id,
+		NickName: nickName,
+		Password: password,
+	})
 
 	response := userControllerCommandDto.CreateResponse{
 		Code: "SUCCESS",
