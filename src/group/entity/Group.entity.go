@@ -1,14 +1,12 @@
-package userEntity
+package groupEntity
 
 import (
 	"time"
 )
 
-// User is UserEntity
-type User struct {
+// Group is GroupEntity
+type Group struct {
 	UUID      string `gorm:"primaryKey"`
-	Id        string
-	Password  string
-	NickName  string
+	Title     string
 	CreatedAt time.Time `sql:"DEFAULT:'current_timestamp'"`
 }

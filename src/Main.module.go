@@ -4,6 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	coreError "github.com/shinYeongHyeon/settlement-supporter/src/core/error"
 	core "github.com/shinYeongHyeon/settlement-supporter/src/core/postgres"
+	groupEntity "github.com/shinYeongHyeon/settlement-supporter/src/group/entity"
 	userModule "github.com/shinYeongHyeon/settlement-supporter/src/user"
 	userEntity "github.com/shinYeongHyeon/settlement-supporter/src/user/entity"
 	"log"
@@ -25,9 +26,12 @@ func CreateModule() *fiber.App {
 func migratePostgres() {
 	manager := core.GetManager()
 
-	err := manager.Db.Table("users").AutoMigrate(&userEntity.User{})
+	// TODO: 여러 에러 동시처리
+	errUsers := manager.Db.Table("users").AutoMigrate(&userEntity.User{})
+	errGroups := manager.Db.Table("groups").AutoMigrate(&groupEntity.Group{})
+	errGroupUsers := manager.Db.Table("group_users").AutoMigrate(&groupEntity.GroupUsers{})
 
-	if err != nil {
-		log.Fatal(err)
+	if errUsers != nil || errGroups != nil || errGroupUsers != nil {
+		log.Fatal(errUsers, errGroups, errGroupUsers)
 	}
 }
