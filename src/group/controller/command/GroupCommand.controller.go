@@ -6,6 +6,7 @@ import (
 	createGroupUseCaseDto "github.com/shinYeongHyeon/settlement-supporter/src/group/application/CreateGroupUseCase/dto"
 	groupControllerCommandDto "github.com/shinYeongHyeon/settlement-supporter/src/group/controller/command/dto"
 	groupDomain "github.com/shinYeongHyeon/settlement-supporter/src/group/domain"
+	groupRepository "github.com/shinYeongHyeon/settlement-supporter/src/group/repository"
 )
 
 // Create : Create group
@@ -31,17 +32,22 @@ func Create(context *fiber.Ctx) error {
 
 	groupTitle, groupTitleOrError := groupDomain.GroupTitleCreate(request.Title)
 
-	// TODO: 에러 표준화
 	if groupTitleOrError != nil {
+		return context.Status(fiber.StatusInternalServerError).JSON(groupControllerCommandDto.CreateResponse{
+			Code: "FAILED",
+		})
 	}
 
-	createGroupUseCase.Exec(createGroupUseCaseDto.CreateGroupUseCaseRequest{
-		Title: groupTitle,
+	createGroupUseCaseResponse := createGroupUseCase.Exec(createGroupUseCaseDto.CreateGroupUseCaseRequest{
+		Title:           groupTitle,
+		GroupRepository: groupRepository.GetRepository(),
 	})
 
-	response := groupControllerCommandDto.CreateResponse{
-		Code: "SUCCESS",
-	}
-
-	return context.Status(fiber.StatusCreated).JSON(response)
+	return context.Status(fiber.StatusCreated).JSON(groupControllerCommandDto.CreateResponse{
+		Code: createGroupUseCaseResponse.Code,
+		Group: groupControllerCommandDto.Group{
+			Uuid:  createGroupUseCaseResponse.Group.GetUuid(),
+			Title: createGroupUseCaseResponse.Group.GetGroupTitle().Value(),
+		},
+	})
 }

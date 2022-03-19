@@ -116,6 +116,9 @@ const docTemplate = `{
                 "code": {
                     "type": "string",
                     "example": "SUCCESS"
+                },
+                "group": {
+                    "$ref": "#/definitions/groupControllerCommandDto.Group"
                 }
             }
         },
@@ -127,6 +130,17 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "errorMessage": {
+                    "type": "string"
+                }
+            }
+        },
+        "groupControllerCommandDto.Group": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "uuid": {
                     "type": "string"
                 }
             }

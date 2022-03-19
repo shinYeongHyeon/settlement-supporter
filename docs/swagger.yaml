@@ -11,6 +11,8 @@ definitions:
       code:
         example: SUCCESS
         type: string
+      group:
+        $ref: '#/definitions/groupControllerCommandDto.Group'
     type: object
   groupControllerCommandDto.CreateResponseError:
     description: Create 의 오류응답
@@ -18,6 +20,13 @@ definitions:
       code:
         type: string
       errorMessage:
+        type: string
+    type: object
+  groupControllerCommandDto.Group:
+    properties:
+      title:
+        type: string
+      uuid:
         type: string
     type: object
   userControllerCommandDto.CreateRequest:

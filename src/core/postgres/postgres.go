@@ -15,6 +15,7 @@ type PostgresManager struct {
 var Manager *PostgresManager
 
 func init() {
+	log.Println("PostgresManager init")
 	var dsn = fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=5432 sslmode=disable TimeZone=Asia/Seoul",
 		os.Getenv("POSTGRES_HOST"),

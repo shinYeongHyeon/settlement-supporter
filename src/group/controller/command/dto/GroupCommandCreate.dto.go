@@ -5,11 +5,16 @@ type CreateRequest struct {
 	Title string `json:"title"`
 }
 
+type Group struct {
+	Uuid  string `json:"uuid"`
+	Title string `json:"title"`
+}
+
 // CreateResponse : Response for CreateGroup
 // @Description SUCCESS 만이 성공
-// TODO: Insert groupObject
 type CreateResponse struct {
-	Code string `json:"code" example:"SUCCESS"`
+	Code  string `json:"code" example:"SUCCESS"`
+	Group Group  `json:"group"`
 }
 
 // CreateResponseError : Response for CreateGroup
