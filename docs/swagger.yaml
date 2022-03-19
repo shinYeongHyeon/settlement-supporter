@@ -1,5 +1,25 @@
 basePath: /
 definitions:
+  groupControllerCommandDto.CreateRequest:
+    properties:
+      title:
+        type: string
+    type: object
+  groupControllerCommandDto.CreateResponse:
+    description: SUCCESS 만이 성공
+    properties:
+      code:
+        example: SUCCESS
+        type: string
+    type: object
+  groupControllerCommandDto.CreateResponseError:
+    description: Create 의 오류응답
+    properties:
+      code:
+        type: string
+      errorMessage:
+        type: string
+    type: object
   userControllerCommandDto.CreateRequest:
     properties:
       id:
@@ -33,6 +53,32 @@ info:
   title: Settlement support API
   version: "0.1"
 paths:
+  /groups:
+    post:
+      consumes:
+      - application/json
+      description: Create a group
+      parameters:
+      - description: CreateGroupRequest
+        in: body
+        name: group
+        required: true
+        schema:
+          $ref: '#/definitions/groupControllerCommandDto.CreateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: CreateGroupResponse
+          schema:
+            $ref: '#/definitions/groupControllerCommandDto.CreateResponse'
+        "400":
+          description: CreateGroupErrorResponse
+          schema:
+            $ref: '#/definitions/groupControllerCommandDto.CreateResponseError'
+      summary: Create a group
+      tags:
+      - Group
   /users:
     post:
       consumes:

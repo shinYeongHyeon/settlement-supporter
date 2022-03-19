@@ -4,6 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	coreError "github.com/shinYeongHyeon/settlement-supporter/src/core/error"
 	core "github.com/shinYeongHyeon/settlement-supporter/src/core/postgres"
+	groupModule "github.com/shinYeongHyeon/settlement-supporter/src/group"
 	groupEntity "github.com/shinYeongHyeon/settlement-supporter/src/group/entity"
 	userModule "github.com/shinYeongHyeon/settlement-supporter/src/user"
 	userEntity "github.com/shinYeongHyeon/settlement-supporter/src/user/entity"
@@ -17,6 +18,7 @@ func CreateModule() *fiber.App {
 	mainModule := fiber.New()
 
 	mainModule.Mount("/users", userModule.CreateModule())
+	mainModule.Mount("/groups", groupModule.CreateModule())
 
 	mainModule.Get("/*", coreError.NotFoundError)
 

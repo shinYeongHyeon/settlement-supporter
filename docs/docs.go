@@ -19,6 +19,46 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/groups": {
+            "post": {
+                "description": "Create a group",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Group"
+                ],
+                "summary": "Create a group",
+                "parameters": [
+                    {
+                        "description": "CreateGroupRequest",
+                        "name": "group",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/groupControllerCommandDto.CreateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "CreateGroupResponse",
+                        "schema": {
+                            "$ref": "#/definitions/groupControllerCommandDto.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "CreateGroupErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/groupControllerCommandDto.CreateResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/users": {
             "post": {
                 "description": "Create an account",
@@ -61,6 +101,36 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "groupControllerCommandDto.CreateRequest": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "groupControllerCommandDto.CreateResponse": {
+            "description": "SUCCESS 만이 성공",
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "SUCCESS"
+                }
+            }
+        },
+        "groupControllerCommandDto.CreateResponseError": {
+            "description": "Create 의 오류응답",
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "errorMessage": {
+                    "type": "string"
+                }
+            }
+        },
         "userControllerCommandDto.CreateRequest": {
             "type": "object",
             "properties": {
