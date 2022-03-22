@@ -6,7 +6,7 @@ import (
 	createGroupUseCaseDto "github.com/shinYeongHyeon/settlement-supporter/src/group/application/CreateGroupUseCase/dto"
 	groupControllerCommandDto "github.com/shinYeongHyeon/settlement-supporter/src/group/controller/command/dto"
 	groupDomain "github.com/shinYeongHyeon/settlement-supporter/src/group/domain"
-	groupRepository "github.com/shinYeongHyeon/settlement-supporter/src/group/repository"
+	groupRepository "github.com/shinYeongHyeon/settlement-supporter/src/group/repository/postgres"
 )
 
 // Create : Create group

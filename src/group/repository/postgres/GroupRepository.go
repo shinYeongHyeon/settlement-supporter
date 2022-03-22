@@ -1,4 +1,4 @@
-package groupRepository
+package postgresGroupRepository
 
 import (
 	core "github.com/shinYeongHyeon/settlement-supporter/src/core/postgres"
@@ -8,6 +8,7 @@ import (
 	"log"
 )
 
+// GroupRepository : GroupRepository struct
 type GroupRepository struct {
 	Repository *gorm.DB
 }

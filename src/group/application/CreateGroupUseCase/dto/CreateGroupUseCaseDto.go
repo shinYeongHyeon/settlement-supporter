@@ -2,7 +2,7 @@ package createGroupUseCaseDto
 
 import (
 	groupDomain "github.com/shinYeongHyeon/settlement-supporter/src/group/domain"
-	groupRepository "github.com/shinYeongHyeon/settlement-supporter/src/group/repository"
+	groupRepository "github.com/shinYeongHyeon/settlement-supporter/src/group/repository/postgres"
 )
 
 // CreateGroupUseCaseRequest : Request of CreateGroupUseCase
