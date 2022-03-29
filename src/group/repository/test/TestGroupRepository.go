@@ -26,6 +26,6 @@ func GetRepository() *TestGroupRepository {
 }
 
 // Create : [test] create Group Row
-func (groupRepository *TestGroupRepository) Create(_ groupDomain.Group) error {
-	return nil
+func (groupRepository *TestGroupRepository) Create(_ groupDomain.Group) (bool, error) {
+	return true, nil
 }

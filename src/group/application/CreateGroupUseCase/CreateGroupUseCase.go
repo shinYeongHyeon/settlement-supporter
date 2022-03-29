@@ -3,10 +3,14 @@ package createGroupUseCase
 import (
 	createGroupUseCaseDto "github.com/shinYeongHyeon/settlement-supporter/src/group/application/CreateGroupUseCase/dto"
 	groupDomain "github.com/shinYeongHyeon/settlement-supporter/src/group/domain"
+	groupRepository "github.com/shinYeongHyeon/settlement-supporter/src/group/repository"
 )
 
 // Exec : Run CreateUserUseCase
-func Exec(request createGroupUseCaseDto.CreateGroupUseCaseRequest) createGroupUseCaseDto.CreateGroupUseCaseResponse {
+func Exec[T groupRepository.IGroupRepository](
+	request createGroupUseCaseDto.CreateGroupUseCaseRequest,
+	repository T,
+) createGroupUseCaseDto.CreateGroupUseCaseResponse {
 	group, err := groupDomain.NewGroupCreate(groupDomain.NewGroupProps{
 		Title: request.Title,
 	})
@@ -18,7 +22,14 @@ func Exec(request createGroupUseCaseDto.CreateGroupUseCaseRequest) createGroupUs
 		}
 	}
 
-	request.GroupRepository.Create(group)
+	_, createError := repository.Create(group)
+
+	if createError != nil {
+		return createGroupUseCaseDto.CreateGroupUseCaseResponse{
+			Code:  "FAIL",
+			Group: groupDomain.Group{},
+		}
+	}
 
 	return createGroupUseCaseDto.CreateGroupUseCaseResponse{
 		Code:  "SUCCESS",

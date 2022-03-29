@@ -38,10 +38,12 @@ func Create(context *fiber.Ctx) error {
 		})
 	}
 
-	createGroupUseCaseResponse := createGroupUseCase.Exec(createGroupUseCaseDto.CreateGroupUseCaseRequest{
-		Title:           groupTitle,
-		GroupRepository: groupRepository.GetRepository(),
-	})
+	createGroupUseCaseResponse := createGroupUseCase.Exec(
+		createGroupUseCaseDto.CreateGroupUseCaseRequest{
+			Title: groupTitle,
+		},
+		groupRepository.GetRepository(),
+	)
 
 	return context.Status(fiber.StatusCreated).JSON(groupControllerCommandDto.CreateResponse{
 		Code: createGroupUseCaseResponse.Code,

@@ -26,11 +26,11 @@ func GetRepository() *GroupRepository {
 }
 
 // Create : create Group Row
-func (groupRepository *GroupRepository) Create(group groupDomain.Group) error {
+func (groupRepository *GroupRepository) Create(group groupDomain.Group) (bool, error) {
 	groupRepository.Repository.Create(&groupEntity.Group{
 		UUID:  group.GetUuid(),
 		Title: group.GetGroupTitle().Value(),
 	})
 
-	return nil
+	return true, nil
 }
