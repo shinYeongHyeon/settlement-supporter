@@ -1,4 +1,4 @@
-package Group
+package groupDomainGroup
 
 import "testing"
 

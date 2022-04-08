@@ -1,4 +1,4 @@
-package Group
+package groupDomainGroup
 
 import core "github.com/shinYeongHyeon/settlement-supporter/src/core/uuid"
 
