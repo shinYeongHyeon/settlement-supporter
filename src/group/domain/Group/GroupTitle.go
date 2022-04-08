@@ -1,4 +1,4 @@
-package groupDomain
+package Group
 
 import "errors"
 

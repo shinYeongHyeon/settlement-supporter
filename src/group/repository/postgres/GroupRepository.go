@@ -2,7 +2,7 @@ package postgresGroupRepository
 
 import (
 	core "github.com/shinYeongHyeon/settlement-supporter/src/core/postgres"
-	groupDomain "github.com/shinYeongHyeon/settlement-supporter/src/group/domain"
+	groupDomain "github.com/shinYeongHyeon/settlement-supporter/src/group/domain/Group"
 	groupEntity "github.com/shinYeongHyeon/settlement-supporter/src/group/entity"
 	"gorm.io/gorm"
 	"log"

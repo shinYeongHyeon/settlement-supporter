@@ -1,7 +1,7 @@
 package groupRepository
 
 import (
-	groupDomain "github.com/shinYeongHyeon/settlement-supporter/src/group/domain"
+	groupDomain "github.com/shinYeongHyeon/settlement-supporter/src/group/domain/Group"
 	postgresGroupRepository "github.com/shinYeongHyeon/settlement-supporter/src/group/repository/postgres"
 	testGroupRepository "github.com/shinYeongHyeon/settlement-supporter/src/group/repository/test"
 )

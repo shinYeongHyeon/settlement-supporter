@@ -1,7 +1,7 @@
 package testGroupRepository
 
 import (
-	groupDomain "github.com/shinYeongHyeon/settlement-supporter/src/group/domain"
+	groupDomain "github.com/shinYeongHyeon/settlement-supporter/src/group/domain/Group"
 	"log"
 )
 
