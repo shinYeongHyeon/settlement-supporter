@@ -31,9 +31,8 @@ func migratePostgres() {
 	// TODO: 여러 에러 동시처리
 	errUsers := manager.Db.Table("users").AutoMigrate(&userEntity.User{})
 	errGroups := manager.Db.Table("groups").AutoMigrate(&groupEntity.Group{})
-	errGroupUsers := manager.Db.Table("group_users").AutoMigrate(&groupEntity.GroupUsers{})
 
-	if errUsers != nil || errGroups != nil || errGroupUsers != nil {
-		log.Fatal(errUsers, errGroups, errGroupUsers)
+	if errUsers != nil || errGroups != nil {
+		log.Fatal(errUsers, errGroups)
 	}
 }
